@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import SearchBar from "./SearchBar";
+import WeatherAPI from "../api/WeatherAPI";
 
 const CurrentWeather = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -12,7 +13,7 @@ const CurrentWeather = () => {
   }, [city]);
 
   const API_KEY = "70a32183695946b3bc1194541232404";
-  const API_URL = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`;
+  const API_URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`;
 
   const fetchWeatherData = async () => {
     try {
