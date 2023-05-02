@@ -2,7 +2,7 @@ import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import CurrentWeather from "./CurrentWeather";
 import Header from "./Header";
-import FourteenDaysWeatherForcast from "./14DaysWeatherForecast";
+import FourteenDaysWeatherForcast from "./7DaysWeatherForecast";
 import HourlyWeatherForcast from "./HourlyWeatherForcast";
 import HourlyWeatherForact from "./HourlyWeatherForcast";
 
@@ -10,9 +10,9 @@ const App = () => {
   return (
     <div>
       {/* <CurrentWeather /> */}
-      <Header />
+      {/* <Header /> */}
       <FourteenDaysWeatherForcast />
-      <HourlyWeatherForact />
+      {/* <HourlyWeatherForact /> */}
     </div>
   );
 };
