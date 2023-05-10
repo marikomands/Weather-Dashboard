@@ -11,6 +11,6 @@
   border-right: none;
 }
 
-.weatherdetails.design:first-child {
+.weatherDetails .design:first-child {
   border: none;
 }
