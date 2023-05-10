@@ -53,22 +53,49 @@ const HourlyWeatherForact = ({
     }
   };
 
+  const getCurrentHour = () => {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    return currentHour;
+  };
+
+  const filterHourlyData = () => {
+    const currentHour = getCurrentHour();
+
+    const filteredData = forecastData.forecast.forecastday.map((day) => {
+      const filteredHourData = day.hour.filter((hour) => {
+        const hourTime = parseInt(hour.time.substring(11));
+        return hourTime >= currentHour;
+      });
+      return {
+        ...day,
+        hour: filteredHourData,
+      };
+    });
+
+    return filteredData;
+  };
+
+  const filteredData = forecastData ? filterHourlyData() : null;
+
   return (
     <div>
       {forecastData ? (
         <div>
           <h1>Hourly Weather Forecast</h1>
           <div className="hour">
-            {forecastData.forecast.forecastday.map((day) =>
-              day.hour.map((hour) => (
-                <div key={hour.time_epoch}>
-                  <h4>{hour.time.substring(11)}</h4>
-                  <p>Temperature: {hour.temp_c} °C</p>
-                  <p>Condition: {hour.condition.text}</p>
-                  <img src={hour.condition.icon} alt="Weather Icon" />
-                </div>
-              ))
-            )}
+            {filteredData.map((day) => {
+              return day.hour.map((hour) => {
+                return (
+                  <div key={hour.time_epoch}>
+                    <h4>{hour.time.substring(11)}</h4>
+                    <p>{hour.temp_c} °C</p>
+                    <p> {hour.condition.text}</p>
+                    <img src={hour.condition.icon} alt="Weather Icon" />
+                  </div>
+                );
+              });
+            })}
           </div>
         </div>
       ) : null}
