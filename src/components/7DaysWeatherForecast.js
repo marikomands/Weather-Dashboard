@@ -71,7 +71,7 @@ const Forcast = () => {
       <SearchBar setCity={setCity} city={city} />
       {forecastData ? (
         <div>
-          <h1>14 Days Forcast</h1>
+          <h1>7 Days Forcast</h1>
 
           <h2 className="city">{forecastData.location.name}</h2>
           <h5 className="region">{forecastData.location.region}</h5>
@@ -94,6 +94,7 @@ const Forcast = () => {
                     />
                     <p>Max Temperature: {forecastDay.day.maxtemp_c} °C</p>
                     <p>Min Temperature: {forecastDay.day.mintemp_c} °C</p>
+                    <p>Humidity: {forecastDay.day.avghumidity}</p>
                   </div>
                 </div>
               );
