@@ -1,4 +1,14 @@
 .hour {
   display: flex;
   flex-wrap: wrap;
+  /* align-content: stretch; */
+}
+
+.hourlyDetails {
+  /* border: solid; */
+  text-align: center;
+  /* border-color: rgba(163, 157, 157, 0.445);
+  border-top: none;
+  border-bottom: none; */
+  margin: 10px;
 }
