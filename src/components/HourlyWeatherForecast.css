@@ -5,10 +5,11 @@
 }
 
 .hourlyDetails {
-  /* border: solid; */
+  border: solid;
   text-align: center;
-  /* border-color: rgba(163, 157, 157, 0.445);
+  border-color: rgba(161, 155, 155, 0.445);
   border-top: none;
-  border-bottom: none; */
-  margin: 10px;
+  border-bottom: none;
+  border-left: none;
+  margin: 5px;
 }
