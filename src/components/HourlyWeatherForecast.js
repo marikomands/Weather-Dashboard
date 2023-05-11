@@ -87,7 +87,7 @@ const HourlyWeatherForact = ({
             {filteredData.map((day) => {
               return day.hour.map((hour) => {
                 return (
-                  <div key={hour.time_epoch}>
+                  <div key={hour.time_epoch} className="hourlyDetails">
                     <h4>{hour.time.substring(11)}</h4>
                     <p>{hour.temp_c} °C</p>
                     <p> {hour.condition.text}</p>
