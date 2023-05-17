@@ -2,6 +2,10 @@
   margin-top: 5;
   font-size: medium;
 }
+.header {
+  display: flex;
+  gap: 10px;
+}
 
 .region,
 .country {
