@@ -1,18 +1,26 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import CurrentWeather from "./CurrentWeather";
-import Header from "./Header";
-// import HourlyWeatherForact from "./HourlyWeatherForcast";
-import SevenDaysWeatherForecast from "./7DaysWeatherForecast";
 import HourlyWeatherForecast from "./HourlyWeatherForecast";
+import SevenDaysWeatherForecast from "./ThreeDaysWeatherForecast";
 
 const App = () => {
   return (
-    <div>
-      {/* <Header /> */}
-      <CurrentWeather />
-      {/* <SevenDaysWeatherForecast /> */}
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<CurrentWeather />} />
+          {/* <Route
+            path="/hourly/weather-forecast"
+            element={<HourlyWeatherForecast />}
+          /> */}
+          <Route
+            path="/seven-days/weather-forecast/:city"
+            element={<SevenDaysWeatherForecast />}
+          />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
