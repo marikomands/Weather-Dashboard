@@ -4,12 +4,7 @@ import SearchBar from "./SearchBar";
 import "./HourlyWeatherForecast.css";
 import "weather-icons/css/weather-icons.css";
 
-const HourlyWeatherForact = ({
-  setCity,
-  city,
-  debounceCity,
-  setDebounceCity,
-}) => {
+const HourlyWeatherForact = ({ city, debounceCity, setDebounceCity }) => {
   const [forecastData, setForecastData] = useState(null);
   const [hourlyData, setHourlyData] = useState(null);
   const [dataError, setDataError] = useState(false);
