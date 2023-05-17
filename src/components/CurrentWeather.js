@@ -3,7 +3,10 @@ import axios from "axios";
 import "weather-icons/css/weather-icons.css";
 import SearchBar from "./SearchBar";
 import "./CurrentWeather.css";
+import Header from "./Header";
 import HourlyWeatherForecast from "./HourlyWeatherForecast";
+import SevenDaysWeatherForecast from "./ThreeDaysWeatherForecast";
+
 // import WeatherAPI from "../api/WeatherAPI";
 
 const CurrentWeather = () => {
@@ -26,7 +29,7 @@ const CurrentWeather = () => {
 
   useEffect(() => {
     if (debounceCity.trim() === "") {
-      // setDataError(false);
+      // setDataError(true);
       setWeatherData(null);
     } else {
       fetchWeatherData();
@@ -51,7 +54,18 @@ const CurrentWeather = () => {
   return (
     <div>
       <h2>Current Weather</h2>
-      <SearchBar setCity={setCity} city={city} />
+      <div className="header">
+        <SearchBar setCity={setCity} city={city} />
+
+        <Header city={city} />
+      </div>
+      {/* <SevenDaysWeatherForecast /> */}
+      {city.length && dataError ? (
+        <p>
+          There is a problem fetching weather data for this location. Please
+          refine your search.
+        </p>
+      ) : null}
       {weatherData ? (
         <div>
           <h2 className="city">{weatherData.location.name}</h2>
@@ -69,12 +83,13 @@ const CurrentWeather = () => {
       ) : (
         <p>Enter City</p>
       )}
-      {city.length && dataError ? (
-        <p>
-          There is a problem fetching weather data for this location. Please
-          refine your search.
-        </p>
-      ) : null}
+
+      {/* <SevenDaysWeatherForecast
+        setCity={setCity}
+        city={city}
+        debounceCity={debounceCity}
+        setDebounceCity={setDebounceCity}
+      /> */}
       <HourlyWeatherForecast
         setCity={setCity}
         city={city}
