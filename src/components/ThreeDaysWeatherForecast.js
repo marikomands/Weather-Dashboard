@@ -69,7 +69,7 @@ const Forecast = () => {
       {/* <SearchBar setCity={setCity} city={city} /> */}
       {forecastData ? (
         <div>
-          <h1>3 Days Forcast</h1>
+          <h1>3 Days Forecast</h1>
 
           <h2 className="city">{forecastData.location.name}</h2>
           <h5 className="region">{forecastData.location.region}</h5>
@@ -90,9 +90,11 @@ const Forecast = () => {
                       src={forecastDay.day.condition.icon}
                       alt="Weather Icon"
                     />
-                    <p>Max Temperature: {forecastDay.day.maxtemp_c} °C</p>
-                    <p>Min Temperature: {forecastDay.day.mintemp_c} °C</p>
-                    <p>Humidity: {forecastDay.day.avghumidity}</p>
+                    <div className="forecast-details">
+                      <p>Max Temperature: {forecastDay.day.maxtemp_c} °C</p>
+                      <p>Min Temperature: {forecastDay.day.mintemp_c} °C</p>
+                      <p>Humidity: {forecastDay.day.avghumidity}</p>
+                    </div>
                   </div>
                 </div>
               );
