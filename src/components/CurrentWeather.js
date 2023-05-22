@@ -3,7 +3,7 @@ import axios from "axios";
 import "weather-icons/css/weather-icons.css";
 import SearchBar from "./SearchBar";
 import "./CurrentWeather.css";
-import Header from "./Header";
+import ForecastLink from "./ForecastLink";
 import HourlyWeatherForecast from "./HourlyWeatherForecast";
 import SevenDaysWeatherForecast from "./ThreeDaysWeatherForecast";
 
@@ -46,8 +46,9 @@ const CurrentWeather = () => {
       setWeatherData(response.data);
       // console.log(response.data);
     } catch (error) {
+      console.log("fetching error occured", error);
       setDataError(true);
-      console.error("Error fetching weather data:", error);
+      setWeatherData(null);
     }
   };
 
@@ -57,7 +58,7 @@ const CurrentWeather = () => {
       <div className="header">
         <SearchBar setCity={setCity} city={city} />
 
-        <Header city={city} />
+        <ForecastLink city={city} />
       </div>
       {/* <SevenDaysWeatherForecast /> */}
       {city.length && dataError ? (
@@ -80,16 +81,9 @@ const CurrentWeather = () => {
             <p>Wind Speed: {weatherData.current.wind_kph}kph</p>
           </div>
         </div>
-      ) : (
+      ) : city.length && dataError ? null : (
         <p>Enter City</p>
       )}
-
-      {/* <SevenDaysWeatherForecast
-        setCity={setCity}
-        city={city}
-        debounceCity={debounceCity}
-        setDebounceCity={setDebounceCity}
-      /> */}
       <HourlyWeatherForecast
         setCity={setCity}
         city={city}
