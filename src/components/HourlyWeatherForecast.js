@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import moment from "moment-timezone";
 import SearchBar from "./SearchBar";
 import "./HourlyWeatherForecast.css";
 import "weather-icons/css/weather-icons.css";
@@ -50,16 +51,21 @@ const HourlyWeatherForact = ({ city, debounceCity, setDebounceCity }) => {
 
   const getCurrentHour = () => {
     const currentDate = new Date();
+    console.log("🚀 ~ getCurrentHour ~ currentDate:", currentDate);
     const currentHour = currentDate.getHours();
     return currentHour;
   };
 
   const filterHourlyData = () => {
     const currentHour = getCurrentHour();
+    console.log("🚀 ~ filterHourlyData ~ currentHour:", currentHour);
+    const timezone = forecastData.location.tz_id;
 
     const filteredData = forecastData.forecast.forecastday.map((day) => {
       const filteredHourData = day.hour.filter((hour) => {
-        const hourTime = parseInt(hour.time.substring(11));
+        const hourTime = moment.tz(hour.time, timezone).hour();
+        // console.log("🚀 ~ filteredHourData ~ hourTime:", hourTime);
+        // const hourTime = parseInt(hour.time.substring(11));
         return hourTime >= currentHour;
       });
       return {
@@ -73,6 +79,8 @@ const HourlyWeatherForact = ({ city, debounceCity, setDebounceCity }) => {
 
   const filteredData = forecastData ? filterHourlyData() : null;
 
+  console.log("🚀 ~ filterHourlyData ~ filteredData:", filteredData);
+
   return (
     <div>
       {forecastData ? (
@@ -81,9 +89,13 @@ const HourlyWeatherForact = ({ city, debounceCity, setDebounceCity }) => {
           <div className="hour">
             {filteredData.map((day) => {
               return day.hour.map((hour) => {
+                const localTime = moment(hour.time)
+                  .tz(forecastData.location.tz_id)
+                  .format("HH:mm");
                 return (
                   <div key={hour.time_epoch} className="hourlyDetails">
-                    <h4>{hour.time.substring(11)}</h4>
+                    <p>{localTime}</p>
+                    {/* <h4>{hour.time.substring(11)}</h4> */}
                     <p>{hour.temp_c} °C</p>
                     <p> {hour.condition.text}</p>
                     <img src={hour.condition.icon} alt="Weather Icon" />
