@@ -1,5 +1,6 @@
 .weatherDetails {
   display: flex;
+  gap: 5px;
 }
 .design {
   border: solid;
@@ -9,6 +10,10 @@
   border-top: none;
   border-bottom: none;
   border-right: none;
+}
+
+.forecast-details {
+  margin: 10px;
 }
 
 .weatherDetails .design:first-child {
